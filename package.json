@@ -1,0 +1,16 @@
+{
+  "name": "real-time-chat-with-socket",
+  "version": "1.0.0",
+  "description": "a real-time chat application with file-sharing capabilities using NodeJs and Socket.IO. The application can handle concurrent connections and allow users to send/receive messages and files.",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
