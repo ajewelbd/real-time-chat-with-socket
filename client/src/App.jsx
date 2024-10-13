@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { RouterProvider } from "react-router-dom"
+import router from "./router/router";
 
 function App() {
 
-  return (
-    <div className="text-3xl">
-      Welcome to Realtime-Chat
-    </div>
-  )
+	return (
+		<>
+			<RouterProvider router={router}/>
+		</>
+	)
 }
 
 export default App
