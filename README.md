@@ -4,7 +4,8 @@ a real-time chat application with file-sharing capabilities using NodeJs and Soc
 
 ## Run in local machine
 
-- Ensure you have PostgreSql installed.
+- Ensure you have MongoDB installed.
+- Clone the repository in your device.
 - Open terminal and run the command to copy the env file from example.
 
 ```sh
@@ -29,6 +30,7 @@ MONGO_DB_URI=mongodb://localhost:27017/realtime-chat
 JWT_SECRET=7f8287bc9405a70d00ac30511aae4269e77c5164dd517379554a8361b740e90d
 ```
 
+- Go to the application root folder.
 - To install the dependency execute the following command.
 
 ```sh
@@ -51,7 +53,8 @@ And client running on `http://localhost:5173/`
 
 ## Run via docker
 
-- To build and run the application with Docker Compose, navigate to your project's directory in the terminal and run:
+- Ensure `.env` file properly configured.
+- To build and run the application with Docker Compose, navigate to the project's directory in the terminal and run:
 
 ```sh
 docker-compose up --build
