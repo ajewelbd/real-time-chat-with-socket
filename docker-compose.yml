@@ -14,20 +14,23 @@ services:
   server:
     build:
       context: ./server
+      dockerfile: Dockerfile
     container_name: chat_server
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/realtime-chat
+      - MONGO_DB_URI=mongodb://mongo:27017/realtime-chat
     ports:
       - "3000:3000"
     depends_on:
       - mongo
     volumes:
       - ./server:/usr/src/app
+      - /usr/src/app/node_modules
 
   # React frontend service
   client:
     build:
       context: ./client
+      dockerfile: Dockerfile
     container_name: chat_frontend
     ports:
       - "8080:80"
