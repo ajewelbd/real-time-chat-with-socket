@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "Auth",
+			"name": "Authentication Endpoints",
 			"item": [
 				{
 					"name": "Register",
@@ -213,11 +213,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{API_URL}}/auth/login",
+									"raw": "http://localhost:3000/api/v1/auth/login",
+									"protocol": "http",
 									"host": [
-										"{{API_URL}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
+										"api",
+										"v1",
 										"auth",
 										"login"
 									]
@@ -294,7 +298,7 @@
 			"description": "This folder contains auth related routes. Such as Register & Login."
 		},
 		{
-			"name": "User",
+			"name": "User Endpoints",
 			"item": [
 				{
 					"name": "Details",
@@ -448,11 +452,15 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/user/list",
+									"raw": "http://localhost:3000/api/v1/user/list",
+									"protocol": "http",
 									"host": [
-										"{{API_URL}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
+										"api",
+										"v1",
 										"user",
 										"list"
 									]
@@ -496,7 +504,7 @@
 			"description": "This folders conatins user related endpoints."
 		},
 		{
-			"name": "Chat",
+			"name": "Chat Endpoints",
 			"item": [
 				{
 					"name": "Messages",
@@ -535,11 +543,15 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/chat/messages/670e8ceedeaa10491b52b2cd",
+									"raw": "http://localhost:3000/api/v1/chat/messages/670e8ceedeaa10491b52b2cd",
+									"protocol": "http",
 									"host": [
-										"{{API_URL}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
+										"api",
+										"v1",
 										"chat",
 										"messages",
 										"670e8ceedeaa10491b52b2cd"
@@ -591,14 +603,14 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/chat/messages/670e8b40deaa10491b52b2c7",
+									"raw": "{{API_URL}}/chat/messages/670e8b40deaa10491b52b2c7ttt",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
 										"chat",
 										"messages",
-										"670e8b40deaa10491b52b2c7"
+										"670e8b40deaa10491b52b2c7ttt"
 									]
 								}
 							},
@@ -613,7 +625,7 @@
 			"description": "This folders conatins chat related endpoints."
 		},
 		{
-			"name": "File Upload",
+			"name": "File Upload Endpoints",
 			"item": [
 				{
 					"name": "Upload",
@@ -671,11 +683,15 @@
 									]
 								},
 								"url": {
-									"raw": "{{API_URL}}/file/upload",
+									"raw": "http://localhost:3000/api/v1/file/upload",
+									"protocol": "http",
 									"host": [
-										"{{API_URL}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
+										"api",
+										"v1",
 										"file",
 										"upload"
 									]

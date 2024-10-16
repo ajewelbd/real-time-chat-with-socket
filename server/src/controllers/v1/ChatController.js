@@ -1,6 +1,4 @@
-import OneToOneChat from "../../models/v1/OneToOneChatModel.js";
-import UserModel from "../../models/v1/UserModel.js";
-
+import { getMessageList, insertMessage } from "../../services/v1/ChatService.js";
 import asyncHandler from "../../utils/asyncHandler.js";
 import { NotFoundError } from "../../utils/errors.js";
 import successResponseHandler from "../../utils/successResponseHandler.js";
@@ -14,18 +12,7 @@ export const getMessages = asyncHandler(async (req, res) => {
 		throw new NotFoundError("Invalid request.")
 	}
 
-	const user = await UserModel.findById(friendId).select("-password");
-
-	if (!user) {
-		throw new NotFoundError("User not found!")
-	}
-
-	const messages = await OneToOneChat.find({
-		$or: [
-			{ senderId: userId, receiverId: friendId },  // Sent by user to friend
-			{ senderId: friendId, receiverId: userId }   // Sent by friend to user
-		]
-	});
+	const messages = await getMessageList(userId, friendId);
 
 	successResponseHandler(res, messages, "Messages retrieved successfully");
 });
@@ -33,10 +20,7 @@ export const getMessages = asyncHandler(async (req, res) => {
 // Save a new message
 export const saveMessage = async (payload) => {
 	try {
-		// New message
-		const message = new OneToOneChat(payload)
-
-		await message.save();
+		const message = await insertMessage(payload)
 		return message;
 	} catch (e) {
 		return null
