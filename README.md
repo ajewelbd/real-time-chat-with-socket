@@ -118,6 +118,7 @@ npm run test
 
 ## Thought Process
 
+1. Her I use `API Versioning`. To provide backward/forward comapatibility simentenously. Or support multi version of the API to serve differrent purposes.
 1. I choose Socket.IO for real-time communication because it provides easy handling of WebSocket connections and is widely used in chat applications.
 2. MongoDB was chosen for its flexibility with document-based storage. User info, chat messages, file meta data are stored in diffrent collections. This makes the process easier to query.
 3. JWT-based authentication ensures that user sessions are secure. Token is generated while user registered or logged in. Prtoceted routes are remain secured for the token.
