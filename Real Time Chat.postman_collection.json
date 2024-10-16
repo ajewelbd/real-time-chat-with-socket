@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "7df7ab2e-4669-4207-aed8-04a27dadc0b8",
 		"name": "Real Time Chat",
+		"description": "A real-time chat application with file-sharing capabilities using NodeJs and Socket.IO. The application can handle concurrent connections and allow users to send/receive messages and files.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7952819"
 	},
@@ -9,139 +10,6 @@
 		{
 			"name": "Auth",
 			"item": [
-				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var response = pm.response.json();",
-									"var token = response.data.token;",
-									"pm.environment.set(\"ACCESS_TOKEN\", token);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{API_URL}}/auth/login",
-							"host": [
-								"{{API_URL}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
-						},
-						"description": "The `POST /api/v1/auth/login` endpoint is used to authenticate a user and obtain an access token. The request should include the user's email and password in the request body.\n\n### Request Body\n\n- `email` (string, required): The email of the user.\n    \n- `password` (string, required): The password of the user.\n    \n\n### Response\n\nUpon successful authentication, the server returns a status code of 200 and a response with the content type of `text/xml`. The response body will contain the access token or user information required for further API calls."
-					},
-					"response": [
-						{
-							"name": "success",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{API_URL}}/auth/login",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Authentication sucessful.\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGZiYjQ4ZWUyYWJkN2MxMjNjM2Q5MSIsImlhdCI6MTcyOTA4NTU1MSwiZXhwIjoxNzI5MTcxOTUxfQ.zXEh5lWLbQW6v1UIPs0U_KuP2ynB1aJoyLbT0Ra5HKY\"\n    }\n}"
-						},
-						{
-							"name": "error",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{API_URL}}/auth/login",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"status\": \"error\",\n    \"code\": 500,\n    \"message\": \"Reason of error\",\n}"
-						},
-						{
-							"name": "wrong credentials",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"852741\" // wrong crdentials\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{API_URL}}/auth/login",
-									"host": [
-										"{{API_URL}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"_postman_previewlanguage": null,
-							"header": null,
-							"cookie": [],
-							"body": "{\n    \"status\": \"error\",\n    \"code\": 400,\n    \"message\": \"Invalid credentials\"\n}"
-						}
-					]
-				},
 				{
 					"name": "Register",
 					"event": [
@@ -189,7 +57,8 @@
 								"auth",
 								"register"
 							]
-						}
+						},
+						"description": "The `POST /api/v1/auth/register` endpoint is used to register a new user and obtain an access token. The request should include the user's name, email and password in the request body.\n\n### Request Body\n\n| Key | Type | Required | Description |\n| --- | --- | --- | --- |\n| name | String | Yes | The name of the user. |\n| email | String | Yes | The email of the user. |\n| password | String | Yes | The password of the user. |\n\n### Response\n\nUpon successful registration, the server returns a status code of 201 and a response with the content type of `application/json`. The response body will contain the access token for further API calls."
 					},
 					"response": [
 						{
@@ -207,11 +76,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{API_URL}}/auth/register",
+									"raw": "http://localhost:3000/api/v1/auth/register",
+									"protocol": "http",
 									"host": [
-										"{{API_URL}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
+										"api",
+										"v1",
 										"auth",
 										"register"
 									]
@@ -220,7 +93,7 @@
 							"_postman_previewlanguage": null,
 							"header": null,
 							"cookie": [],
-							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"User successfully registered\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGU4YjQwZGVhYTEwNDkxYjUyYjJjNyIsImlhdCI6MTcyOTAwNjQwMCwiZXhwIjoxNzI5MDkyODAwfQ.uq68WSv0kwi_IHMJXG3XOd-Inj_P2mU6azCy2-f44Sk\"\n    }\n}"
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 201,\n    \"message\": \"User successfully registered\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGU4YjQwZGVhYTEwNDkxYjUyYjJjNyIsImlhdCI6MTcyOTAwNjQwMCwiZXhwIjoxNzI5MDkyODAwfQ.uq68WSv0kwi_IHMJXG3XOd-Inj_P2mU6azCy2-f44Sk\"\n    }\n}"
 						},
 						{
 							"name": "invalid input",
@@ -259,7 +132,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"name\": \"Md.Ashraful Alam\",\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"raw": "{\n    \"name\": \"Md.Ashraful Alam\",\n    \"email\": \"alamjewelbd@gmail.com\", // already registered user email\n    \"password\": \"123456\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -283,8 +156,142 @@
 							"body": "{\n  \"status\":\"error\",\n    \"code\":400,\n    \"message\":\"User already exist!.\"\n}"
 						}
 					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"var token = response.data.token;",
+									"pm.environment.set(\"ACCESS_TOKEN\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "The `POST /api/v1/auth/login` endpoint is used to authenticate a user and obtain an access token. The request should include the user's email and password in the request body.\n\n### Request Body\n\n| Key | Type | Required | Description |\n| --- | --- | --- | --- |\n| email | String | Yes | The email of the user. |\n| password | String | Yes | The password of the user. |\n\n### Response\n\nUpon successful authentication, the server returns a status code of 200 and a response with the content type of `application/json`. The response body will contain the access token for further API calls."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Authentication sucessfull.\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGZiYjQ4ZWUyYWJkN2MxMjNjM2Q5MSIsImlhdCI6MTcyOTA4NTU1MSwiZXhwIjoxNzI5MTcxOTUxfQ.zXEh5lWLbQW6v1UIPs0U_KuP2ynB1aJoyLbT0Ra5HKY\"\n    }\n}"
+						},
+						{
+							"name": "wrong credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"852741\" // wrong password\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 400,\n    \"message\": \"Invalid credentials\"\n}"
+						},
+						{
+							"name": "server error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 500,\n    \"message\": \"Reason of error\",\n}"
+						}
+					]
 				}
-			]
+			],
+			"description": "This folder contains auth related routes. Such as Register & Login."
 		},
 		{
 			"name": "User",
@@ -319,7 +326,8 @@
 								"user",
 								"details"
 							]
-						}
+						},
+						"description": "### Get User Details\n\nThis endpoint is used to fetch logged user informastion.\n\nIf a valid token is passed in headers->Authorization, then it will return a success response.\n\nIf a invalid token passed or no token passed in headers then it will throw error with error code \\`401\\`."
 					},
 					"response": [
 						{
@@ -330,15 +338,20 @@
 									{
 										"key": "Authorization",
 										"value": "{{ACCESS_TOKEN}}",
+										"description": "Authorization token",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/user/details",
+									"raw": "http://localhost:3000/api/v1/user/details",
+									"protocol": "http",
 									"host": [
-										"{{API_URL}}"
+										"localhost"
 									],
+									"port": "3000",
 									"path": [
+										"api",
+										"v1",
 										"user",
 										"details"
 									]
@@ -350,7 +363,7 @@
 							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"User details retrieved successfully\",\n    \"data\": {\n        \"_id\": \"670fbb48ee2abd7c123c3d91\",\n        \"name\": \"Md. Ashraful Alam\",\n        \"email\": \"alamjewelbd@gmail.com\",\n        \"timestamp\": \"2024-10-16T13:10:32.639Z\",\n        \"__v\": 0\n    }\n}"
 						},
 						{
-							"name": "unauthorised",
+							"name": "unauthorised (no token passed))",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
@@ -419,7 +432,8 @@
 								"user",
 								"list"
 							]
-						}
+						},
+						"description": "This endpoint is used to fetch the registered user list. By this authenticated user can see the users as friends except him."
 					},
 					"response": [
 						{
@@ -461,14 +475,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{API_URL}}/chat/messages/670e8b40deaa10491b52b2c7",
+									"raw": "{{API_URL}}/user/list",
 									"host": [
 										"{{API_URL}}"
 									],
 									"path": [
-										"chat",
-										"messages",
-										"670e8b40deaa10491b52b2c7"
+										"user",
+										"list"
 									]
 								}
 							},
@@ -479,13 +492,14 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "This folders conatins user related endpoints."
 		},
 		{
 			"name": "Chat",
 			"item": [
 				{
-					"name": "Details",
+					"name": "Messages",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -505,7 +519,8 @@
 								"messages",
 								"670e8ceedeaa10491b52b2cd"
 							]
-						}
+						},
+						"description": "This endpoint is used to fetch the previous messages of a selected friend. To whom authenticated user want's chat or see the message hsitory."
 					},
 					"response": [
 						{
@@ -537,6 +552,34 @@
 							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Messages retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"670e91d89c1187019e6e624d\",\n            \"senderId\": \"670e8ceedeaa10491b52b2cd\",\n            \"receiverId\": \"670e918e9c1187019e6e623b\",\n            \"content\": \"Hello\",\n            \"type\": \"text\",\n            \"timestamp\": \"2024-10-15T16:01:28.828Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e91e79c1187019e6e6250\",\n            \"senderId\": \"670e918e9c1187019e6e623b\",\n            \"receiverId\": \"670e8ceedeaa10491b52b2cd\",\n            \"content\": \"Hi\",\n            \"type\": \"text\",\n            \"timestamp\": \"2024-10-15T16:01:43.572Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e91f89c1187019e6e6254\",\n            \"senderId\": \"670e8ceedeaa10491b52b2cd\",\n            \"receiverId\": \"670e918e9c1187019e6e623b\",\n            \"content\": \"Test\",\n            \"type\": \"text\",\n            \"timestamp\": \"2024-10-15T16:02:00.606Z\",\n            \"__v\": 0\n        }\n    ]\n}"
 						},
 						{
+							"name": "user not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{ACCESS_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/chat/messages/670e8b40deaa10491b52b2c7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"chat",
+										"messages",
+										"670e8b40deaa10491b52b2c7"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 404,\n    \"message\": \"User not found!\",\n}"
+						},
+						{
 							"name": "server error",
 							"originalRequest": {
 								"method": "GET",
@@ -566,7 +609,8 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "This folders conatins chat related endpoints."
 		},
 		{
 			"name": "File Upload",
@@ -601,7 +645,8 @@
 								"file",
 								"upload"
 							]
-						}
+						},
+						"description": "By this endpoint different kinds of file can be upload. Specially this route in chatting. Where user can share files with his firend.\n\nIf no file selected then error reponse will be thrown.\n\nNo file restrictions applied right now."
 					},
 					"response": [
 						{
@@ -680,7 +725,8 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "This folders conatins file related endpoints."
 		}
 	]
 }

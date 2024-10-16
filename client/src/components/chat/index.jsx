@@ -11,6 +11,7 @@ export default function Chat() {
     const [selectedFriend, setSelectedFriend] = useState(null);
     const [socket, setSocket] = useState(null);
     const [newMessage, setNewMessage] = useState("");
+    const [notifyFrom, setNotifyFrom] = useState(null);
 
     useEffect(() => {
         const token = getToken();
@@ -19,21 +20,28 @@ export default function Chat() {
         }
     }, []);
 
+    // watch incoming messages
     useEffect(() => {
-        if (socket) {
+        if (socket && currentUser) {
             socket.on("private-message", (message) => {
                 if (message.receiverId === currentUser?._id) {
-                    setNewMessage(message);
+                    if(message.senderId === selectedFriend?._id) {
+                        setNewMessage(message);
+                    } else {
+                        setNotifyFrom(message.senderId)
+                    }
                 }
             });
         }
-    }, [socket]);
+    }, [socket, currentUser, selectedFriend]);
 
     return currentUser ? (
         <div className="flex items-start w-full border border-gray-300 rounded">
             <Friends
                 currentUser={currentUser}
                 setSelectedFriend={setSelectedFriend}
+                selectedFriend={selectedFriend}
+                notifyFrom={notifyFrom}
             />
             <ChatBox
                 currentUser={currentUser}

@@ -33,7 +33,7 @@ export const register = asyncHandler(async (req, res) => {
 
 	// Generate JWT token
 	const token = generateToken(user._id);
-	successResponseHandler(res, { token }, "User successfully registered");
+	successResponseHandler(res, { token }, "User successfully registered", 201);
 });
 
 // Check authenticity
@@ -61,5 +61,5 @@ export const login = asyncHandler(async (req, res) => {
 
 	// Generate JWT token
 	const token = generateToken(user._id);
-	successResponseHandler(res, { token }, "Authentication sucessful.");
+	successResponseHandler(res, { token }, "Authentication sucessfull.");
 });

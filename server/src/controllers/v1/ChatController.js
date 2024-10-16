@@ -1,4 +1,5 @@
 import OneToOneChat from "../../models/v1/OneToOneChatModel.js";
+import UserModel from "../../models/v1/UserModel.js";
 
 import asyncHandler from "../../utils/asyncHandler.js";
 import { NotFoundError } from "../../utils/errors.js";
@@ -11,6 +12,12 @@ export const getMessages = asyncHandler(async (req, res) => {
 
 	if (!friendId) {
 		throw new NotFoundError("Invalid request.")
+	}
+
+	const user = await UserModel.findById(friendId).select("-password");
+
+	if (!user) {
+		throw new NotFoundError("User not found!")
 	}
 
 	const messages = await OneToOneChat.find({

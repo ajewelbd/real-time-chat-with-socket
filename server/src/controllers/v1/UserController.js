@@ -6,7 +6,8 @@ import successResponseHandler from "../../utils/successResponseHandler.js";
 
 // Get all users
 export const getUsers = asyncHandler(async (req, res) => {
-	const users = await User.find().select("-password");
+	const authUserId = req.user.id;
+	const users = await User.find({ _id: { $ne: authUserId } }).select("-password");
 
 	successResponseHandler(res, users, "Users retrieved successfully");
 });
