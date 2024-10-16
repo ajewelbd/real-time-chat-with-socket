@@ -1,0 +1,686 @@
+{
+	"info": {
+		"_postman_id": "7df7ab2e-4669-4207-aed8-04a27dadc0b8",
+		"name": "Real Time Chat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7952819"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"var token = response.data.token;",
+									"pm.environment.set(\"ACCESS_TOKEN\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "The `POST /api/v1/auth/login` endpoint is used to authenticate a user and obtain an access token. The request should include the user's email and password in the request body.\n\n### Request Body\n\n- `email` (string, required): The email of the user.\n    \n- `password` (string, required): The password of the user.\n    \n\n### Response\n\nUpon successful authentication, the server returns a status code of 200 and a response with the content type of `text/xml`. The response body will contain the access token or user information required for further API calls."
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Authentication sucessful.\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGZiYjQ4ZWUyYWJkN2MxMjNjM2Q5MSIsImlhdCI6MTcyOTA4NTU1MSwiZXhwIjoxNzI5MTcxOTUxfQ.zXEh5lWLbQW6v1UIPs0U_KuP2ynB1aJoyLbT0Ra5HKY\"\n    }\n}"
+						},
+						{
+							"name": "error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 500,\n    \"message\": \"Reason of error\",\n}"
+						},
+						{
+							"name": "wrong credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"852741\" // wrong crdentials\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 400,\n    \"message\": \"Invalid credentials\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"var token = response.data.token;",
+									"pm.environment.set(\"ACCESS_TOKEN\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Md. Ashraful Alam\",\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Md.Ashraful Alam\",\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/register",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"User successfully registered\",\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGU4YjQwZGVhYTEwNDkxYjUyYjJjNyIsImlhdCI6MTcyOTAwNjQwMCwiZXhwIjoxNzI5MDkyODAwfQ.uq68WSv0kwi_IHMJXG3XOd-Inj_P2mU6azCy2-f44Sk\"\n    }\n}"
+						},
+						{
+							"name": "invalid input",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/register",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 400,\n    \"message\": \"Invalid input\",\n}"
+						},
+						{
+							"name": "user already exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Md.Ashraful Alam\",\n    \"email\": \"alamjewelbd@gmail.com\",\n    \"password\": \"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/register",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n  \"status\":\"error\",\n    \"code\":400,\n    \"message\":\"User already exist!.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/user/details",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"details"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{ACCESS_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/user/details",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"details"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"User details retrieved successfully\",\n    \"data\": {\n        \"_id\": \"670fbb48ee2abd7c123c3d91\",\n        \"name\": \"Md. Ashraful Alam\",\n        \"email\": \"alamjewelbd@gmail.com\",\n        \"timestamp\": \"2024-10-16T13:10:32.639Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "unauthorised",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/details",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"details"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 401,\n    \"message\": \"Unauthorized\",\n}"
+						},
+						{
+							"name": "wrong token",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "123456",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/user/details",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"details"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 401,\n    \"message\": \"Token is not valid\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/user/list",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{ACCESS_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/user/list",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"list"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Users retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"670e8b40deaa10491b52b2c7\",\n            \"name\": \"Md.Ashraful Alam\",\n            \"email\": \"alamjewelbd@gmail.com\",\n            \"timestamp\": \"2024-10-15T15:33:20.201Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e8ceedeaa10491b52b2cd\",\n            \"name\": \"Jewel\",\n            \"email\": \"imobilzbd@gmail.com\",\n            \"timestamp\": \"2024-10-15T15:40:30.634Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e8d09deaa10491b52b2d0\",\n            \"name\": \"Jewel2\",\n            \"email\": \"imobilzbd1@gmail.com\",\n            \"timestamp\": \"2024-10-15T15:40:57.872Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e8d34deaa10491b52b2d3\",\n            \"name\": \"Jewel23\",\n            \"email\": \"imobilzbd31@gmail.com\",\n            \"timestamp\": \"2024-10-15T15:41:40.298Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e8d74deaa10491b52b2d9\",\n            \"name\": \"Jewel233\",\n            \"email\": \"imobilzbd3144@gmail.com\",\n            \"timestamp\": \"2024-10-15T15:42:44.898Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e8daddeaa10491b52b2dc\",\n            \"name\": \"Jewel23dd3\",\n            \"email\": \"imobilzbd314dd4@gmail.com\",\n            \"timestamp\": \"2024-10-15T15:43:41.913Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{ACCESS_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/chat/messages/670e8b40deaa10491b52b2c7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"chat",
+										"messages",
+										"670e8b40deaa10491b52b2c7"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 500,\n    \"message\": \"Reason of error\",\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/chat/messages/670e8ceedeaa10491b52b2cd",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"chat",
+								"messages",
+								"670e8ceedeaa10491b52b2cd"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{ACCESS_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/chat/messages/670e8ceedeaa10491b52b2cd",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"chat",
+										"messages",
+										"670e8ceedeaa10491b52b2cd"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"Messages retrieved successfully\",\n    \"data\": [\n        {\n            \"_id\": \"670e91d89c1187019e6e624d\",\n            \"senderId\": \"670e8ceedeaa10491b52b2cd\",\n            \"receiverId\": \"670e918e9c1187019e6e623b\",\n            \"content\": \"Hello\",\n            \"type\": \"text\",\n            \"timestamp\": \"2024-10-15T16:01:28.828Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e91e79c1187019e6e6250\",\n            \"senderId\": \"670e918e9c1187019e6e623b\",\n            \"receiverId\": \"670e8ceedeaa10491b52b2cd\",\n            \"content\": \"Hi\",\n            \"type\": \"text\",\n            \"timestamp\": \"2024-10-15T16:01:43.572Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"670e91f89c1187019e6e6254\",\n            \"senderId\": \"670e8ceedeaa10491b52b2cd\",\n            \"receiverId\": \"670e918e9c1187019e6e623b\",\n            \"content\": \"Test\",\n            \"type\": \"text\",\n            \"timestamp\": \"2024-10-15T16:02:00.606Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{ACCESS_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API_URL}}/chat/messages/670e8b40deaa10491b52b2c7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"chat",
+										"messages",
+										"670e8b40deaa10491b52b2c7"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 500,\n    \"message\": \"Cast to ObjectId failed for value \\\"2\\\" (type string) at path \\\"senderId\\\" for model \\\"OneToOneChat\\\"\",\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "File Upload",
+			"item": [
+				{
+					"name": "Upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ACCESS_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/jewel/Downloads/DSCF6507.JPG"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/file/upload",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"file",
+								"upload"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{ACCESS_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/file/upload",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"file",
+										"upload"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"code\": 200,\n    \"message\": \"File uploaded successfully\",\n    \"data\": {\n        \"url\": \"http://localhost:3000/uploads/chat_file_file-1729007251015-513967692.pdf\"\n    }\n}"
+						},
+						{
+							"name": "error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{ACCESS_TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/file/upload",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"file",
+										"upload"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"code\": 400,\n    \"message\": \"No file uploaded\",\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
